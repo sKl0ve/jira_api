@@ -80,7 +80,7 @@ def get_resolved_time_for_assignee(issue, username):
         time_stop = l_stop[-1]
 
     answer = (time_stop - time_start).total_seconds // 3600
-    return answer                
+    return answer         
 
       
 def get_issue_item_to_time(issue, field, to):
@@ -171,7 +171,7 @@ def opened_and_closed_issues_per_day():
         dataset = json.loads(response.text)
         opened_issues_list.append(dataset['total'])
         
-    plt.plot(opened_issues_list, linewidth=3.0, color='grey')
+    plt.plot(opened_issues_list, linewidth=3.0, color='grey', label='Open')
     
     close_list_dates = []
     payload = {'jql': f'project=OAK AND status=Closed', 'maxResults': '100',
@@ -198,7 +198,7 @@ def opened_and_closed_issues_per_day():
         k = counter[date]
         list_close_by_day.append(k)
 
-    plt.plot(list_close_by_day, linewidth=3.0, color='green')
+    plt.plot(list_close_by_day, linewidth=3.0, color='green', label='Closed')
     plt.title(f'3. Графики открытых и закрытых задач за последние {PERIOD} дней')
     plt.xlabel('Дата')
     plt.ylabel('Количество задач')
@@ -209,17 +209,19 @@ def opened_and_closed_issues_per_day():
         x_list.append(i)
 
     plt.xticks(x_list, labels=date_list, rotation=90, size=8)
+    plt.legend()
     plt.show()
 
     summary_list_open = summ_elements(opened_issues_list)
     summary_list_close = summ_elements(list_close_by_day)
 
-    plt.plot(summary_list_open, linewidth=3.0, color='grey')
-    plt.plot(summary_list_close, linewidth=3.0, color='green')
+    plt.plot(summary_list_open, linewidth=3.0, color='grey', label='Open')
+    plt.plot(summary_list_close, linewidth=3.0, color='green', label='Closed')
     plt.title(f'3. Графики накопления открытых и закрытых задач за последние {PERIOD} дней')
     plt.xlabel('Дата')
     plt.ylabel('Количество задач')
     plt.xticks(x_list, labels=date_list, rotation=90, size=8)
+    plt.legend()
     plt.show()
     # print(date_list)
     # print(dataset)
