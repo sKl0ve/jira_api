@@ -1,0 +1,9 @@
+README.md
+run.py
+setup.py
+lab3.egg-info/PKG-INFO
+lab3.egg-info/SOURCES.txt
+lab3.egg-info/dependency_links.txt
+lab3.egg-info/top_level.txt
+lab_work/main.py
+tests/test.py

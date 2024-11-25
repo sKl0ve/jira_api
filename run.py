@@ -1,4 +1,4 @@
-from lab_work3.main import *
+from lab_work.main import *
 
 
 while 1:
